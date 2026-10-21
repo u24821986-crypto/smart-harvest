@@ -483,5 +483,11 @@ def predict_cutoff_breach(
         "message": message
     }
 
-
+#An add on
+def calculate_daily_transport_capacity(number_of_trucks, crates_per_truck, trips_per_day):
+    """
+    Calculates the maximum number of crates the transport fleet can move in one day.
+    """
+    total_crates = number_of_trucks * crates_per_truck * trips_per_day
+    return total_crates
 
