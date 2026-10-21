@@ -1,3 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebander Agribusiness - SmartHarvest</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom Brand Colors -->
+    <style>
+        /* Charcoal grey background from your palette */
+        body { background-color: #F4F5F4; } 
+        
+        /* Dark Forest Green */
+        .bg-brand-dark { background-color: #235C06 !important; }
+        .text-brand-dark { color: #235C06 !important; }
+        
+        /* Golden Yellow */
+        .text-brand-yellow { color: #FFD006 !important; }
+        .btn-brand-yellow { 
+            background-color: #FFD006; 
+            color: #000000; 
+            font-weight: 700;
+            border: none;
+        }
+        .btn-brand-yellow:hover {
+            background-color: #ADB001; /* Lime olive hover */
+            color: #000000;
+        }
+        
+        /* Deep Green Accent */
+        .text-brand-green { color: #40720B !important; }
 
+        /* Custom Card Styling */
+        .custom-card {
+            border: none;
+            border-top: 5px solid #FFD006; /* Golden yellow accent on top of cards */
+            transition: transform 0.2s;
+        }
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm py-3">
+        <div class="container justify-content-between">
+            <!-- The Logo (Path updated to match your images folder) -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="images/logo.png" alt="Rebander Logo" height="60" class="me-3">
+            </a>
+            
+            <!-- Login Button in Top Right -->
+            <a href="login.html" class="btn btn-brand-yellow px-4 py-2 shadow-sm">Log In</a>
+        </div>
+    </nav>
+
+    <!-- 2. Centered Hero Section -->
+    <div class="container text-center mt-5 pt-4">
+        <h1 class="display-4 fw-bold text-brand-dark mb-3">SmartHarvest System</h1>
+        <p class="fs-5 text-secondary mx-auto" style="max-width: 700px;">
+            A digital supply chain solution for <span class="fw-bold text-brand-green">Rebander Agribusiness</span>. Track harvesting, manage truck capacity, and ensure delivery to the Louis Trichardt packhouse before the 17:00 cut-off.
+        </p>
+        
+        <!-- 3. The Action Buttons -->
+        <div class="mt-5 mb-5">
+            <!-- This button links to the Operations form -->
+            <a href="operations.html" class="btn btn-brand-yellow btn-lg px-4 py-3 shadow me-3">
+                Team Leader: Log Harvest
+            </a>
+            
+            <!-- This button links to the Dashboard -->
+            <a href="dashboard.html" class="btn btn-outline-dark btn-lg px-4 py-3 shadow">
+                Management: View Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- 4. Floating Feature Cards -->
+    <div class="container mb-5">
+        <div class="row g-4 justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card custom-card h-100 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <h2 class="fw-bold text-brand-dark mb-2">7</h2>
+                        <h5 class="text-muted">Production Blocks</h5>
+                        <p class="text-secondary mt-2">Real-time harvesting tracking across all orchard blocks.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card custom-card h-100 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <h2 class="fw-bold text-brand-dark mb-2">1,000</h2>
+                        <h5 class="text-muted">Crate Capacity</h5>
+                        <p class="text-secondary mt-2">Automated alerts if harvested crates exceed truck capacity.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card custom-card h-100 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <h2 class="fw-bold text-brand-dark mb-2">17:00</h2>
+                        <h5 class="text-muted">Packhouse Cut-off</h5>
+                        <p class="text-secondary mt-2">Track truck departures to ensure no delays at the packhouse.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 5. Dark Forest Green Footer -->
+    <footer class="bg-brand-dark text-center py-4 mt-auto">
+        <p class="text-white mb-0">&copy; 2026 Rebander Agribusiness | Tsianda Village</p>
+        <p class="text-brand-yellow mb-0 mt-1 fw-bold">SmartHarvest Supply Chain Technologies</p>
+    </footer>
+
+</body>
+</html>
 
    
