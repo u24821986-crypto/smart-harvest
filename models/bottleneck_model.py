@@ -1,7 +1,7 @@
 import math
 
 from harvest_model import calculate_progress_percentage
-from transport_model import transport_utilisation
+from transport_model import calculate_vehicle_utilisation
 def identify_constraint(progress, utilisation):
     """Identify the constraint based on progress and utilisation."""
     if progress < utilisation:
