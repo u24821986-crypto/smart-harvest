@@ -71,7 +71,7 @@ def calculate_transport_capacity(
 
 def calculate_vehicle_utilisation(
     crates_loaded: int,
-    available_capacity: int
+    vehicle_capacity: int
 ) -> float:
     
     """
@@ -80,15 +80,15 @@ def calculate_vehicle_utilisation(
     Formula
     -------
     Vehicle Utilisation (%) =
-    (Crates Loaded ÷ Available Capacity) × 100
+    (Crates Loaded ÷ Vehicle Capacity) × 100
 
     Parameters
     ----------
     crates_loaded : int
         Number of crates loaded or transported.
 
-    available_capacity : int
-        Total available transport capacity.
+    vehicle_capacity : int
+        Total available vehicle capacity.
 
     Returns
     -------
@@ -102,7 +102,7 @@ def calculate_vehicle_utilisation(
         If crates_loaded is negative.
 
     ValueError
-        If available_capacity is less than or equal to zero.
+        If vehicle_capacity is less than or equal to zero.
     """
 
     if crates_loaded < 0:
@@ -110,14 +110,14 @@ def calculate_vehicle_utilisation(
             "crates_loaded cannot be negative."
         )
 
-    if available_capacity <= 0:
+    if vehicle_capacity <= 0:
         raise ValueError(
-            "available_capacity must be greater than zero."
+            "vehicle_capacity must be greater than zero."
         )
 
     utilisation = (
         crates_loaded /
-        available_capacity
+        vehicle_capacity
     ) * 100.0
 
     return round(utilisation, 2)
@@ -483,12 +483,5 @@ def predict_cutoff_breach(
         "message": message
     }
 
-#An add on
 
-def transport_utilisation(crates_loaded, total_truck_capacity):
-    if total_truck_capacity == 0:
-        return 0  # Prevents crashing if there is no capacity
-        
-    utilisation = crates_loaded / total_truck_capacity
-    return utilisation
 
