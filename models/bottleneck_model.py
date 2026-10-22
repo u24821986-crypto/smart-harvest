@@ -1,106 +1,64 @@
 import math
 
-from harvest_model import calculate_daily_labour_capacity
-from transport_model import calculate_daily_transport_capacity
-def identify_constraint(labour_capacity, transport_capacity):
-    """Identify the constraint based on labour and transport capacities."""
-    if labour_capacity < transport_capacity:
-        return "Labour is the constraint."
-    elif transport_capacity < labour_capacity:
-        return "Transport is the constraint."
+from harvest_model import calculate_progress_percentage
+from transport_model import transport_utilisation
+def identify_constraint(progress, utilisation):
+    """Identify the constraint based on progress and utilisation."""
+    if progress < utilisation:
+        return "Labour is the constraint." # Or "Progress is the constraint"
+    elif utilisation < progress:
+        return "Transport is the constraint." # Or "Utilisation is the constraint"
     else:
-        return "Both labour and transport are balanced."
+        return "Both are balanced."
 
-   
-from transport_model import calculate_daily_transport_capacity 
-def calculate_capacity_gap(required_capacity, actual_capacity):
-    """Calculate the capacity gap between required and actual capacities."""
-    gap = required_capacity - actual_capacity
+    
+def calculate_capacity_gap(total_truck_capacity, crates_loaded):
+    """Calculate the capacity gap between total and actual capacities."""
+    gap = total_truck_capacity - crates_loaded
     return max(0, gap)  # Ensure the gap is not negative    
-def evaluate_transport_bottleneck(crates_harvested_today, number_of_trucks, capacity_per_truck, trips_per_day):
-    """
-    Evaluates if there is a transport bottleneck based on the number of crates harvested today
-    and the transport capacity.
-    """
-    # Calculate the total transport capacity for the day
-    total_transport_capacity = calculate_daily_transport_capacity(number_of_trucks, capacity_per_truck, trips_per_day)
-    
-    # Calculate the gap between harvested crates and transport capacity
-    transport_gap = calculate_capacity_gap(crates_harvested_today, total_transport_capacity)
-    
-    return transport_gap
+
 
 def classify_bottleneck(gap):
     """Classify the severity of the gap."""
     if gap == 0:
         return "No bottleneck."
-    elif gap <= 200:
+    elif gap <= (0.2 * total_truck_capacity):
         return "Minor bottleneck."
     else:
         return "Severe bottleneck."
 
-def rank_constraints(labour_gap, transport_gap):
-    """Ranks which bottle neck is the most urgent to fix."""
-    if labour_gap > transport_gap:
-        return "Labour is the primary constraint."
-    elif transport_gap > labour_gap:
-        return "Transport is the primary constraint."
+
+import math
+
+def identify_labour_bottleneck(block_name, trees_harvested, total_trees_in_block, workers_available, hours_worked_so_far, hours_left_in_day):
+    """
+    Calculates how many MORE workers are needed based on current progress.
+    """
+    
+    # 1. Calculate progress using your function
+    progress = calculate_progress_percentage(trees_harvested, total_trees_in_block)
+    
+    # 2. Figure out how fast they are ACTUALLY working right now
+    if hours_worked_so_far > 0 and workers_available > 0:
+        actual_productivity = (trees_harvested / workers_available) / hours_worked_so_far
     else:
-        return "Both constraints are equally significant."
-
-
-from harvest_model import calculate_daily_labour_capacity
-
-def identify_labour_bottleneck(block_name, tree_target, workers_available, actual_productivity, hours_in_day=8):
-    """
-    Calculates if there is a labour bottleneck.
-    It pulls the capacity calculation from the harvest_model.
-    """
+        actual_productivity = 1.0 # Fallback if they just started
+        
+    # 3. How many trees are left to hit 100%?
+    trees_remaining = total_trees_in_block - trees_harvested
     
-    # 1. Ask the harvest model to do the math
-    labour_capacity = calculate_daily_labour_capacity(workers_available, actual_productivity, hours_in_day)
+    # 4. How many trees can the current team pick in the remaining hours?
+    projected_capacity = workers_available * actual_productivity * hours_left_in_day
     
-    # 2. Compare capacity to the target
-    gap = tree_target - labour_capacity
+    # 5. Compare them and find the gap
+    gap = trees_remaining - projected_capacity
     
     if gap > 0:
-        # Calculate how many extra workers are needed to close the gap
-        extra_workers_needed = math.ceil(gap / (actual_productivity * hours_in_day))
-        return f"{block_name}: Shortage! Need {extra_workers_needed} more workers to hit the target."
+        # 6. Calculate exactly how many EXTRA workers are needed
+        # (Divide the gap by how much one worker can do in the remaining time)
+        extra_workers_needed = math.ceil(gap / (actual_productivity * hours_left_in_day))
+        return f"{block_name}: Progress {round(progress, 1)}%. Shortage! Add {extra_workers_needed} more workers."
     else:
-        return f"{block_name}: Labour capacity is sufficient."
-
-def identify_transport_bottleneck(trips_needed, trips_available):
-    """Identify if there is a transport bottleneck based on trips needed and available."""
-    shortage = trips_needed - trips_available
-    if shortage > 0:
-        return f" Shortage of {math.ceil(shortage)} trips."
-    else:
-        return f" Transport capacity is sufficient."
-
-def run_master_diagnostic(block_name, workers_needed, workers_available, crates_harvested_today, number_of_trucks, capacity_per_truck, trips_per_day):
-    
-    # 1. Evaluate Transport (From your code)
-    transport_gap = evaluate_transport_bottleneck(crates_harvested_today, number_of_trucks, capacity_per_truck, trips_per_day)
-    
-    # Calculate trips needed for the transport bottleneck message
-    trips_needed = math.ceil(crates_harvested_today / capacity_per_truck)
-    transport_msg = identify_transport_bottleneck(trips_needed, trips_per_day)
-    
-    # 2. Evaluate Labour (From your code)
-    labour_gap = max(0, workers_needed - workers_available)
-    labour_msg = identify_labour_bottleneck(block_name, workers_needed, workers_available, actual_productivity=2, hours_in_day=8)
-    
-    # 3. Rank and Classify (From your code)
-    rank_msg = rank_constraints(labour_gap, transport_gap)
-    severity_msg = classify_bottleneck(max(labour_gap, transport_gap))
-    
-    # 4. Return the report
-    return {
-        "Block Status": labour_msg,
-        "Transport Status": transport_msg,
-        "Primary Constraint": rank_msg,
-        "Severity": severity_msg
-    }
+        return f"{block_name}: Progress {round(progress, 1)}%. Labour capacity is sufficient."
 
 
