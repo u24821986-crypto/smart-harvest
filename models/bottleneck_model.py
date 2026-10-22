@@ -12,9 +12,9 @@ def identify_constraint(progress, utilisation):
         return "Both are balanced."
 
     
-def calculate_capacity_gap(total_truck_capacity, crates_loaded):
+def calculate_capacity_gap(vehicle_capacity, crates_loaded):
     """Calculate the capacity gap between total and actual capacities."""
-    gap = total_truck_capacity - crates_loaded
+    gap = vehicle_capacity - crates_loaded
     return max(0, gap)  # Ensure the gap is not negative    
 
 
@@ -22,7 +22,7 @@ def classify_bottleneck(gap):
     """Classify the severity of the gap."""
     if gap == 0:
         return "No bottleneck."
-    elif gap <= (0.2 * total_truck_capacity):
+    elif gap <= (0.2 * vehicle_capacity):
         return "Minor bottleneck."
     else:
         return "Severe bottleneck."
