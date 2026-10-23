@@ -9,22 +9,6 @@ def calculate_progress_percentage(trees_harvested_per_day, total_trees_in_block)
     progress = (trees_harvested_per_day / total_trees_in_block) * 100
     return progress
 
-def calculate_daily_labour_capacity(total_workers, productivity_per_worker_hour, hours_in_day, crates_per_tree=10):
-    """
-    Calculates the maximum number of crates the workforce can harvest in one day.
-    (Based on the proposal: 1 tree = 10-20 crates. We use 10 as a baseline).
-    """
-    # 1. How many trees can all the workers pick in one hour?
-    trees_per_hour = total_workers * productivity_per_worker_hour
-    
-    # 2. How many trees in a full day?
-    trees_per_day = trees_per_hour * hours_in_day
-    
-    # 3. Convert trees to crates (The farm's unit of transport)
-    total_crates = trees_per_day * crates_per_tree
-    
-    return total_crates
-
 def calculate_harvest_rate(total_crates_harvested, hours_worked):
     """
     Calculates the harvest rate in crates per hour.
