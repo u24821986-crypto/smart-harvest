@@ -109,7 +109,7 @@ def test_calculate_vehicle_utilisation():
     # Zero available capacity
     with pytest.raises(
         ValueError,
-        match="available_capacity must be greater than zero."
+        match="vehicle_capacity must be greater than zero."
     ):
         calculate_vehicle_utilisation(
             120,
@@ -120,7 +120,7 @@ def test_calculate_vehicle_utilisation():
     # Negative available capacity
     with pytest.raises(
         ValueError,
-        match="available_capacity must be greater than zero."
+        match="vehicle_capacity must be greater than zero."
     ):
         calculate_vehicle_utilisation(
             120,
