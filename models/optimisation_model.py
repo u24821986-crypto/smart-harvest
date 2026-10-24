@@ -11,7 +11,7 @@ Provides:
 
 
 def calculate_block_harvest_rate(
-    workers_available: int,
+    active_workers: int,
     picker_productivity_rate: float = 12.5
 ) -> float:
     """
@@ -21,11 +21,11 @@ def calculate_block_harvest_rate(
     Formula
     -------
     Harvest Rate =
-    Workers Available × Picker Productivity Rate
+    Active Workers × Picker Productivity Rate
 
     Parameters
     ----------
-    workers_available : int
+    active_workers : int
         Number of active workers assigned
         to the block.
 
@@ -43,16 +43,16 @@ def calculate_block_harvest_rate(
     Raises
     ------
     ValueError
-        If workers_available is negative.
+        If active_workers is negative.
 
     ValueError
         If picker_productivity_rate is less
         than or equal to zero.
     """
 
-    if workers_available < 0:
+    if active_workers < 0:
         raise ValueError(
-            "workers_available cannot be negative."
+            "active_workers cannot be negative."
         )
 
     if picker_productivity_rate <= 0:
@@ -61,7 +61,7 @@ def calculate_block_harvest_rate(
         )
 
     harvest_rate = (
-        workers_available *
+        active_workers *
         picker_productivity_rate
     )
 
