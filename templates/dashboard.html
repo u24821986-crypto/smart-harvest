@@ -1,1 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Operations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="header-copy">
+                <p class="eyebrow">Farm operations</p>
+                <h1>Smart Operations</h1>
+                <p class="header-description">Record daily production performance across the farm.</p>
+            </div>
+            <div class="header-actions">
+                <img src="images/logo.png" alt="Rembander Logo" class="site-logo">
+                <a href="dashboard.html" class="btn dashboard-button">Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <section class="page-section" aria-labelledby="operations-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Daily production</p>
+                    <h2 id="operations-heading">Operations Management</h2>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <article class="form-card">
+                    <h3>Team Information</h3>
+                    <form action="/Team-Leader" method="post">
+                        <div class="field">
+                            <label for="teamInfo" class="form-label">Team Leader's Name</label>
+                            <input type="text" id="teamInfo" name="teamInfo" class="form-control" required>
+                        </div>
+                        <div class="field">
+                            <label for="productionBlock" class="form-label">Operation Location</label>
+                            <select id="productionBlock" name="operationBlock" class="form-select" required>
+                                <option value="Block1">Block 1</option>
+                                <option value="Block2">Block 2</option>
+                                <option value="Block3">Block 3</option>
+                                <option value="Block4">Block 4</option>
+                                <option value="Block5">Block 5</option>
+                                <option value="Block6">Block 6</option>
+                                <option value="Block7">Block 7</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="NumOfWorkers" class="form-label">Number of Workers <span class="optional">(optional)</span></label>
+                            <input type="number" id="NumOfWorkers" name="NumOfWorkers" class="form-control" min="0">
+                        </div>
+                        <button type="submit" class="btn submit-button">Submit Team Information</button>
+                    </form>
+                </article>
+
+                <article class="form-card">
+                    <h3>Harvested Crates</h3>
+                    <form action="/Harvesting" method="post">
+                        <div class="field">
+                            <label for="CratesHarvested" class="form-label">Crates Harvested</label>
+                            <input type="number" id="CratesHarvested" name="CratesHarvested" class="form-control" min="0">
+                        </div>
+                        <div class="field">
+                            <label for="NumOfTrees" class="form-label">Number of Trees</label>
+                            <input type="number" id="NumOfTrees" name="NumOfTrees" class="form-control" min="0">
+                        </div>
+                        <div class="field">
+                            <label for="RejectedCrates" class="form-label">Rejected Crates</label>
+                            <input type="number" id="RejectedCrates" name="RejectedCrates" class="form-control" min="0">
+                        </div>
+                        <div class="field">
+                            <label for="Time" class="form-label">Time</label>
+                            <input type="number" id="Time" name="Time" class="form-control" min="0">
+                        </div>
+                        <button type="submit" class="btn submit-button">Submit Harvesting Details</button>
+                    </form>
+                </article>
+            </div>
+        </section>
+
+        <section class="page-section" aria-labelledby="logistics-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Transport and delivery</p>
+                    <h2 id="logistics-heading">Logistics Management</h2>
+                </div>
+                
+            </div>
+
+            <article class="form-card">
+                <form action="/Logistics" method="post">
+                    <div class="form-grid logistics-grid">
+                        <div class="field">
+                            <label for="tripNumber" class="form-label">Trip Number</label>
+                            <input type="number" id="tripNumber" name="tripNumber" class="form-control" min="0">
+                        </div>
+                        <div class="field">
+                            <label for="vehicleType" class="form-label">Vehicle Type</label>
+                            <select id="vehicleType" name="vehicleType" class="form-select" required>
+                                <option value="Truck">Truck</option>
+                                <option value="Tractor">Tractor</option>
+                                <option value="Bakkie">Bakkie</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="vehicleInfo" class="form-label">Vehicle Registration Number</label>
+                            <input type="text" id="vehicleInfo" name="vehicleInfo" class="form-control" required>
+                        </div>
+                        <div class="field">
+                            <label for="driverInfo" class="form-label">Driver Name</label>
+                            <input type="text" id="driverInfo" name="driverInfo" class="form-control" required>
+                        </div>
+                        <div class="field">
+                            <label for="destination" class="form-label">Destination</label>
+                            <select id="destination" name="destination" class="form-select" required>
+                                <option value="PackHouse">Pack house</option>
+                                <option value="FarmShed">Farm shed</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="numCrates" class="form-label">Number of Crates Loaded</label>
+                            <input type="number" id="numCrates" name="numCrates" class="form-control" min="0" required>
+                        </div>
+                        <div class="field">
+                            <label for="time" class="form-label">Truck Departure Time</label>
+                            <input type="number" id="time" name="time" class="form-control" min="0">
+                        </div>
+                        <div class="field">
+                            <label for="eta" class="form-label">Estimated Arrival Time</label>
+                            <input type="text" id="eta" name="eta" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn submit-button">Submit Logistics</button>
+                </form>
+            </article>
+        </section>
+
+        <section class="page-section" aria-labelledby="notes-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Daily record</p>
+                    <h2 id="notes-heading">Operational Notes</h2>
+                </div>
+                <p>Share delays or any additional information.</p>
+            </div>
+
+            <article class="form-card">
+                <form action="/Summary" method="post">
+                    <div class="field">
+                        <label for="delaysInfo" class="form-label">Delays</label>
+                        <input type="text" id="delaysInfo" name="delaysInfo" class="form-control">
+                    </div>
+                    <div class="field">
+                        <label for="remarksInfo" class="form-label">Additional Remarks</label>
+                        <input type="text" id="remarksInfo" name="remarksInfo" class="form-control">
+                    </div>
+                    <button type="submit" class="btn submit-button">Submit Notes</button>
+                </form>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
 
