@@ -1,1 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Operations Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="header-copy">
+                <p class="eyebrow">Farm operations</p>
+                <h1>Smart Dashboard</h1>
+                <p class="header-description">View daily production performance across the farm.</p>
+            </div>
+            <div class="header-actions">
+                <img src="images/logo.jpg" alt="Rembander Logo" class="site-logo">
+                <a href="operations.html" class="btn dashboard-button">Operations</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container dashboard-content">
+        <form action="/Team-Leader" method="post" class="filter-card">
+            <div class="filter-field">
+                <label for="productionBlock" class="form-label">Block</label>
+                <select id="productionBlock" name="operationBlock" class="form-select" required>
+                    <option value="Block1">Block 1</option>
+                    <option value="Block2">Block 2</option>
+                    <option value="Block3">Block 3</option>
+                    <option value="Block4">Block 4</option>
+                    <option value="Block5">Block 5</option>
+                    <option value="Block6">Block 6</option>
+                    <option value="Block7">Block 7</option>
+                </select>
+            </div>
+            <div class="filter-field">
+                <label for="DateHarvested" class="form-label">Date</label>
+                <input type="date" id="DateHarvested" name="DateHarvested" class="form-control">
+            </div>
+            <button type="submit" class="btn submit-button filter-button">Apply</button>
+        </form>
+
+        <section class="dashboard-section" aria-labelledby="kpi-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Daily status</p>
+                    <h2 id="kpi-heading">Key Performance Indicators</h2>
+                </div>
+                
+            </div>
+            <div class="kpi-grid">
+                <article class="kpi-card" id="harvestKpi">
+                    <div class="kpi-topline">
+                        <h3>Crates Harvested Today</h3>
+                        <span class="kpi-status" id="harvestStatus" role="status"></span>
+                    </div>
+                    <p class="kpi-value"><span id="harvestValue">--</span><span class="kpi-unit">crates</span></p>
+                    <p class="kpi-detail">Target: at least 100 crates per day</p>
+                </article>
+                <article class="kpi-card" id="transportKpi">
+                    <div class="kpi-topline">
+                        <h3>Transport Awaiting</h3>
+                        <span class="kpi-status" id="transportStatus" role="status"></span>
+                    </div>
+                    <p class="kpi-value"><span id="transportValue">--</span><span class="kpi-unit">crates</span></p>
+                    <p class="kpi-detail">Crates harvested but not yet dispatched</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="dashboard-section" aria-labelledby="charts-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Production overview</p>
+                    <h2 id="charts-heading">Harvest &amp; Logistics</h2>
+                </div>
+                
+            </div>
+
+            <div class="chart-grid">
+                <article class="chart-card">
+                    <h3>Crates Harvested Over Time</h3>
+                    <p class="chart-description">Example crates harvested each day</p>
+                    <div class="chart-container">
+                        <canvas id="harvestChart" role="img"
+                                aria-label="Line chart showing illustrative crates harvested from Monday through Sunday"></canvas>
+                    </div>
+                </article>
+                <article class="chart-card">
+                    <h3>Crates by Destination</h3>
+                    <p class="chart-description">Example share of crates sent to each destination</p>
+                    <div class="chart-container doughnut-container">
+                        <canvas id="destinationChart" role="img"
+                                aria-label="Doughnut chart showing illustrative crate shares for Pack house, Farm shed, and Other"></canvas>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="dashboard-section" aria-labelledby="operations-table-heading">
+            <h2 class="table-heading" id="operations-table-heading">Operations Management</h2>
+            <div class="table-card">
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle dashboard-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Time</th>
+                                <th scope="col">Team Leader's Name</th>
+                                <th scope="col">Operation Location</th>
+                                <th scope="col">Number of Workers</th>
+                                <th scope="col">Crates Harvested</th>
+                                <th scope="col">Number of Trees</th>
+                                <th scope="col">Rejected Crates</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>04:30</td><td>John Doe</td><td>Block 1</td><td>5</td><td>100</td><td>20</td><td>5</td></tr>
+                            <tr><td>08:30</td><td>Jane Smith</td><td>Block 1</td><td>8</td><td>150</td><td>25</td><td>10</td></tr>
+                            <tr><td>10:20</td><td>Mike Johnson</td><td>Block 1</td><td>6</td><td>120</td><td>22</td><td>8</ td></tr>
+                            <tr><td>11:42</td><td>Sarah Williams</td><td>Block 1</td><td>7</td><td>130</td><td>24</td><td>6</ td></tr>
+                            <tr><td>13:15</td><td>Robert Brown</td><td>Block 1</td><td>9</td><td>140</td><td>26</td><td>12</ td></tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section" aria-labelledby="logistics-table-heading">
+            <h2 class="table-heading" id="logistics-table-heading">Logistics Management</h2>
+            <div class="table-card">
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle dashboard-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Time</th>
+                                <th scope="col">Trip Number</th>
+                                <th scope="col">Vehicle Type</th>
+                                <th scope="col">Vehicle Registration Number</th>
+                                <th scope="col">Driver Name</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Number of Crates</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>08:47</td><td>1</td><td>Tractor</td><td>XYZ-123</td><td>John Doe</td><td>Pack House</td><td>100</td></tr>
+                            <tr><td>09:00</td><td>1</td><td>Truck</td><td>ABC-456</td><td>Jane Smith</td><td>Farm Shed</td><td>150</td></tr>
+                            <tr><td>11:10</td><td>2</td><td>Tractor</td><td>DEF-789</td><td>Mike Johnson</td><td>Other</td><td>200</td></tr>
+                            <tr><td>12:05</td><td>3</td><td>Tractor</td><td>GHI-012</td><td>Sarah Williams</td><td>Pack House</td><td>180</td></tr>
+                            <tr><td>12:30</td><td>2</td><td>Truck</td><td>LIV-345</td><td>Robert Brown</td><td>Farm Shed</td><td>120</td></tr>
+                            <tr><td>14:15</td><td>4</td><td>Tractor</td><td>PAT-678</td><td>Livhu Browns</td><td>Farm shed</td><td>59</td></tr>
+                            <tr><td>15:09</td><td>3</td><td>Truck</td><td>JKL-901</td><td>Chantel Davis</td><td>Pack House</td><td>100</td></tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+    <script>
+        const dateInput = document.getElementById("DateHarvested");
+        const today = new Date();
+        dateInput.value = [
+            today.getFullYear(),
+            String(today.getMonth() + 1).padStart(2, "0"),
+            String(today.getDate()).padStart(2, "0")
+        ].join("-");
+
+        const farmGreen = "#005333";
+        const farmGold = "#f9d000";
+        const harvestValues = [82, 96, 74, 118, 105, 132, 110];
+        const destinationValues = [420, 200, 60];
+        const totalHarvested = harvestValues.reduce((total, crates) => total + crates, 0);
+        const totalDispatched = destinationValues.reduce((total, crates) => total + crates, 0);
+        const cratesAwaitingTransport = Math.max(totalHarvested - totalDispatched, 0);
+
+        function updateKpi(cardId, valueId, statusId, value, isBottleneck) {
+            const card = document.getElementById(cardId);
+            const status = document.getElementById(statusId);
+
+            document.getElementById(valueId).textContent = value.toLocaleString();
+            card.classList.add(isBottleneck ? "is-bottleneck" : "is-on-track");
+            status.textContent = isBottleneck ? "Bottleneck" : "On track";
+        }
+
+        const cratesHarvestedToday = harvestValues[harvestValues.length - 1];
+        updateKpi("harvestKpi", "harvestValue", "harvestStatus",
+            cratesHarvestedToday, cratesHarvestedToday < 100);
+        updateKpi("transportKpi", "transportValue", "transportStatus",
+            cratesAwaitingTransport, cratesAwaitingTransport > 0);
+
+        new Chart(document.getElementById("harvestChart"), {
+            type: "line",
+            data: {
+                labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                datasets: [{
+                    label: "Crates harvested",
+                    data: harvestValues,
+                    borderColor: farmGreen,
+                    backgroundColor: "rgba(0, 83, 51, 0.12)",
+                    pointBackgroundColor: farmGold,
+                    pointBorderColor: farmGreen,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.35
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => `${context.parsed.y} crates`
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: "Crates" },
+                        grid: { color: "rgba(0, 83, 51, 0.08)" }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById("destinationChart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Pack house", "Farm shed", "Other"],
+                datasets: [{
+                    data: destinationValues,
+                    backgroundColor: [farmGreen, farmGold, "#83b899"],
+                    borderColor: "#ffffff",
+                    borderWidth: 3,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "62%",
+                plugins: {
+                    legend: {
+                        position: "bottom",
+                        labels: { usePointStyle: true, padding: 20 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => {
+                                const values = context.dataset.data;
+                                const total = values.reduce((sum, value) => sum + value, 0);
+                                const percentage = (context.parsed / total * 100).toFixed(1);
+                                return `${context.label}: ${context.parsed} crates (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
 
