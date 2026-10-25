@@ -50,7 +50,7 @@
             <p class="small text-success text-uppercase fw-bold mb-1">Daily status</p>
             <h2 class="h3 mb-3" id="kpi-heading">Key Performance Indicators</h2>
             <div class="row g-3">
-                <article class="col-md-6">
+                <article class="col-md-4">
                     <div class="card h-100 border-start border-5" id="harvestKpi">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between gap-2">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="col-md-6">
+                <article class="col-md-4">
                     <div class="card h-100 border-start border-5" id="transportKpi">
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between gap-2">
@@ -71,6 +71,18 @@
                             </div>
                             <p class="display-6 fw-bold my-3"><span id="transportValue">--</span> <span class="fs-6 text-secondary">crates</span></p>
                             <p class="text-secondary mb-0">Crates harvested but not yet dispatched</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="col-md-4">
+                    <div class="card h-100 border-start border-5" id="shiftEndKpi">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between gap-2">
+                                <h3 class="h5 mb-0">Crates at Shift End</h3>
+                                <span class="badge" id="shiftEndStatus" role="status"></span>
+                            </div>
+                            <p class="display-6 fw-bold my-3"><span id="shiftEndValue">--</span> <span class="fs-6 text-secondary">crates</span></p>
+                            <p class="text-secondary mb-0">Crates harvested but not transported</p>
                         </div>
                     </div>
                 </article>
@@ -108,15 +120,47 @@
             </div>
         </section>
 
+
+                <section class="mb-5" aria-labelledby="operations-table-heading">
+            <h2 class="h3 mb-3" id="operations-table-heading">Shift Overview</h2>
+            <div class="card rounded-3 overflow-hidden shadow-sm">
+                <div class="table-responsive">
+                    <table id="shiftOverviewTable" class="table table-bordered table-striped align-middle mb-0">
+                        <thead class="table-success">
+                            <tr>
+                                
+                                <th scope="col">Shift Start</th>
+                                <th scope="col">Shift End</th>
+                                <th scope="col">Hours Worked</th>
+                                <th scope="col">Team Leader</th>
+                                <th scope="col">Operation Location</th>
+                                <th scope="col">Number of workers</th>
+                                <th scope="col">Total Crates Harvested</th>
+                                <th scope="col">Total Rejected Crates</th>
+                                <th scope="col">Number of Trees</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>04:30</td><td>16:30</td><td>12</td><td>John Doe</td><td>Block 1</td><td>5</td><td>100</td><td>20</td><td>5</td></tr>
+                            <tr><td>05:10</td><td>15:10</td><td>10</td><td>Jane Smith</td><td>Block 1</td><td>8</td><td>150</td><td>25</td><td>10</td></tr>
+                            <tr><td>05:55</td><td>--:--</td><td>-</td><td>Mike Johnson</td><td>Block 1</td><td>6</td><td>120</td><td>22</td><td>8</td></tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
         <section class="mb-5" aria-labelledby="operations-table-heading">
             <h2 class="h3 mb-3" id="operations-table-heading">Operations Management</h2>
-            <div class="card shadow-sm">
+            <div class="card rounded-3 overflow-hidden shadow-sm">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped align-middle mb-0">
                         <thead class="table-success">
                             <tr>
                                 <th scope="col">Time</th>
-                                <th scope="col">Team Leader's Name</th>
+                                <th scope="col">Team Leader</th>
                                 <th scope="col">Operation Location</th>
                                 <th scope="col">Number of Workers</th>
                                 <th scope="col">Crates Harvested</th>
@@ -128,8 +172,7 @@
                             <tr><td>04:30</td><td>John Doe</td><td>Block 1</td><td>5</td><td>100</td><td>20</td><td>5</td></tr>
                             <tr><td>08:30</td><td>Jane Smith</td><td>Block 1</td><td>8</td><td>150</td><td>25</td><td>10</td></tr>
                             <tr><td>10:20</td><td>Mike Johnson</td><td>Block 1</td><td>6</td><td>120</td><td>22</td><td>8</td></tr>
-                            <tr><td>11:42</td><td>Sarah Williams</td><td>Block 1</td><td>7</td><td>130</td><td>24</td><td>6</td></tr>
-                            <tr><td>13:15</td><td>Robert Brown</td><td>Block 1</td><td>9</td><td>140</td><td>26</td><td>12</td></tr>
+                            
                             
                         </tbody>
                     </table>
@@ -139,9 +182,9 @@
 
         <section class="mb-5" aria-labelledby="logistics-table-heading">
             <h2 class="h3 mb-3" id="logistics-table-heading">Logistics Management</h2>
-            <div class="card shadow-sm">
+            <div class="card rounded-3 overflow-hidden shadow-sm">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped align-middle mb-0">
+                    <table id="logisticsOverviewTable" class="table table-bordered table-striped align-middle mb-0">
                         <thead class="table-success">
                             <tr>
                                 <th scope="col">Time</th>
@@ -150,17 +193,15 @@
                                 <th scope="col">Vehicle Registration Number</th>
                                 <th scope="col">Driver Name</th>
                                 <th scope="col">Destination</th>
-                                <th scope="col">Number of Crates</th>
+                                <th scope="col">Number of Crates Initially Loaded</th>
+                                <th scope="col">Number of Crates at Destination</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>08:47</td><td>1</td><td>Tractor</td><td>XYZ-123</td><td>John Doe</td><td>Pack House</td><td>100</td></tr>
-                            <tr><td>09:00</td><td>1</td><td>Truck</td><td>ABC-456</td><td>Jane Smith</td><td>Farm Shed</td><td>150</td></tr>
-                            <tr><td>11:10</td><td>2</td><td>Tractor</td><td>DEF-789</td><td>Mike Johnson</td><td>Other</td><td>200</td></tr>
-                            <tr><td>12:05</td><td>3</td><td>Tractor</td><td>GHI-012</td><td>Sarah Williams</td><td>Pack House</td><td>180</td></tr>
-                            <tr><td>12:30</td><td>2</td><td>Truck</td><td>LIV-345</td><td>Robert Brown</td><td>Farm Shed</td><td>120</td></tr>
-                            <tr><td>14:15</td><td>4</td><td>Tractor</td><td>PAT-678</td><td>Livhu Browns</td><td>Farm shed</td><td>59</td></tr>
-                            <tr><td>15:09</td><td>3</td><td>Truck</td><td>JKL-901</td><td>Chantel Davis</td><td>Pack House</td><td>100</td></tr>
+                            <tr><td>08:47</td><td>1</td><td>Tractor</td><td>XYZ-123</td><td>John Doe</td><td>Pack House</td><td>100</td><td>80</td></tr>
+                            <tr><td>09:00</td><td>1</td><td>Truck</td><td>ABC-456</td><td>Jane Smith</td><td>Farm Shed</td><td>150</td><td>120</td></tr>
+                            
+                            <tr><td>15:09</td><td>3</td><td>Truck</td><td>JKL-901</td><td>Chantel Davis</td><td>Pack House</td><td>100</td><td>80</td></tr>
                         
                         </tbody>
                     </table>
@@ -186,6 +227,13 @@
         const totalHarvested = harvestValues.reduce((total, crates) => total + crates, 0);
         const totalDispatched = destinationValues.reduce((total, crates) => total + crates, 0);
         const cratesAwaitingTransport = Math.max(totalHarvested - totalDispatched, 0);
+        const cratesAtShiftEnd = Math.max(
+            [...document.querySelectorAll("#shiftOverviewTable tbody tr")]
+                .reduce((sum, row) => sum + Number(row.cells[6].textContent), 0) -
+            [...document.querySelectorAll("#logisticsOverviewTable tbody tr")]
+                .reduce((sum, row) => sum + Number(row.cells[6].textContent), 0),
+            0
+        );
 
         function updateKpi(cardId, valueId, statusId, value, isBottleneck) {
             const card = document.getElementById(cardId);
@@ -204,6 +252,8 @@
             cratesHarvestedToday, cratesHarvestedToday < 100);
         updateKpi("transportKpi", "transportValue", "transportStatus",
             cratesAwaitingTransport, cratesAwaitingTransport > 0);
+        updateKpi("shiftEndKpi", "shiftEndValue", "shiftEndStatus",
+            cratesAtShiftEnd, cratesAtShiftEnd > 0);
 
         new Chart(document.getElementById("harvestChart"), {
             type: "line",
@@ -284,3 +334,4 @@
     </script>
 </body>
 </html>
+
