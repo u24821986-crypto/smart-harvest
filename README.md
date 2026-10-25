@@ -15,12 +15,11 @@ SmartHarvest is a web-based supply chain management solution designed for Remban
 ---
 
 ## Folder Structure
-The project is structured for a Flask application, separating the HTML frontend, and Python logic models.
+The project is structured as a frontend web prototype (HTML/CSS/JS) supported by Python logic models.
 
 ```text
 BFB321_Project/
 │
-├── app.py                     # Main Flask application file
 ├── README.md                  # This file
 ├── .gitignore                 # Git ignore file
 │
@@ -36,7 +35,7 @@ BFB321_Project/
 │   ├── test_optimisation_model.py
 │   └── test_transport_model.py
 │
-└── templates/                 # HTML files (Jinja2 templates)
+└── templates/                 # HTML files (Frontend prototype)
     ├── index.html
     ├── login.html
     ├── dashboard.html
