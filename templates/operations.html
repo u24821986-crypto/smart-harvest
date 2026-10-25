@@ -35,7 +35,14 @@
                             <h3 class="h5">Team Information</h3>
                             <form action="/Team-Leader" method="post">
                                 <div class="mb-3">
-                                    <label for="teamInfo" class="form-label">Team Leader's Name</label>
+                                    <label for="production" class="form-label">Shift period</label>
+                                    <select id="production" name="operationBlock" class="form-select" required>
+                                        <option value="Clockin">Clock In</option>
+                                        <option value="Clockout">Clock Out</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="teamInfo" class="form-label">Team Leader<span class="small text-secondary">(required)</span></label>
                                     <input type="text" id="teamInfo" name="teamInfo" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
@@ -50,9 +57,21 @@
                                         <option value="Block7">Block 7</option>
                                     </select>
                                 </div>
+
+
                                 <div class="mb-3">
-                                    <label for="NumOfWorkers" class="form-label">Number of Workers <span class="small text-secondary">(optional)</span></label>
+                                    <label for="NumOfWorkers" class="form-label">Number of Workers<span class="small text-secondary">(required)</span></label>
                                     <input type="number" id="NumOfWorkers" name="NumOfWorkers" class="form-control" min="0">
+                                </div>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <label for="DateTeam" class="form-label">Date</label>
+                                        <input type="date" id="DateTeam" name="DateHarvested" class="form-control">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="TimeTeam" class="form-label">Time</label>
+                                        <input type="time" id="TimeTeam" name="TimeHarvested" class="form-control">
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-success w-100">Submit Team Information</button>
                             </form>
@@ -66,21 +85,32 @@
                             <h3 class="h5">Harvested Crates</h3>
                             <form action="/Harvesting" method="post">
                                 <div class="mb-3">
-                                    <label for="CratesHarvested" class="form-label">Crates Harvested</label>
-                                    <input type="number" id="CratesHarvested" name="CratesHarvested" class="form-control" min="0">
+                                    <label for="Team" class="form-label">Team Leader<span class="small text-secondary">(required)</span></label>
+                                    <input type="number" id="Team" name="Team" class="form-control" min="0" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="CratesHarvested" class="form-label">Crates Harvested<span class="small text-secondary">(required)</span></label>
+                                    <input type="number" id="CratesHarvested" name="CratesHarvested" class="form-control" min="0" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="NumOfTrees" class="form-label">Number of Trees</label>
-                                    <input type="number" id="NumOfTrees" name="NumOfTrees" class="form-control" min="0">
+                                    <input type="number" id="NumOfTrees" name="NumOfTrees" class="form-control" min="0" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="RejectedCrates" class="form-label">Rejected Crates</label>
-                                    <input type="number" id="RejectedCrates" name="RejectedCrates" class="form-control" min="0">
+                                    <label for="RejectedCrates" class="form-label">Rejected Crates<span class="small text-secondary">(required)</span></label>
+                                    <input type="number" id="RejectedCrates" name="RejectedCrates" class="form-control" min="0" required>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Time" class="form-label">Time</label>
-                                    <input type="number" id="Time" name="Time" class="form-control" min="0">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <label for="DateHarvested" class="form-label">Date</label>
+                                        <input type="date" id="DateHarvested" name="DateHarvested" class="form-control">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="TimeHarvested" class="form-label">Time</label>
+                                        <input type="time" id="TimeHarvested" name="TimeHarvested" class="form-control">
+                                    </div>
                                 </div>
+
                                 <button type="submit" class="btn btn-success w-100">Submit Harvesting Details</button>
                             </form>
                         </div>
@@ -98,8 +128,8 @@
                     <form action="/Logistics" method="post">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="tripNumber" class="form-label">Trip Number</label>
-                                <input type="number" id="tripNumber" name="tripNumber" class="form-control" min="0">
+                                <label for="tripNumber" class="form-label">Trip Number<span class="small text-secondary">(required)</span></label>
+                                <input type="number" id="tripNumber" name="tripNumber" class="form-control" min="0" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="vehicleType" class="form-label">Vehicle Type</label>
@@ -111,11 +141,11 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="vehicleInfo" class="form-label">Vehicle Registration Number</label>
+                                <label for="vehicleInfo" class="form-label">Vehicle Registration Number<span class="small text-secondary">(required)</span></label>
                                 <input type="text" id="vehicleInfo" name="vehicleInfo" class="form-control" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="driverInfo" class="form-label">Driver Name</label>
+                                <label for="driverInfo" class="form-label">Driver Name<span class="small text-secondary">(required)</span></label>
                                 <input type="text" id="driverInfo" name="driverInfo" class="form-control" required>
                             </div>
                             <div class="col-md-6">
@@ -127,16 +157,24 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="numCrates" class="form-label">Number of Crates Loaded</label>
+                                <label for="numCrates" class="form-label">Number of Crates Initially Loaded</label>
                                 <input type="number" id="numCrates" name="numCrates" class="form-control" min="0" required>
                             </div>
-                            <div class="col-md-6">
-                                <label for="time" class="form-label">Truck Departure Time</label>
-                                <input type="number" id="time" name="time" class="form-control" min="0">
+                        </div>
+
+                        <div class="col-md-6">
+                                <label for="numCratesDest" class="form-label">Number of Crates at Destination</label>
+                                <input type="number" id="numCratesDest" name="numCratesDest" class="form-control" min="0" required>
                             </div>
-                            <div class="col-md-6">
-                                <label for="eta" class="form-label">Estimated Arrival Time</label>
-                                <input type="text" id="eta" name="eta" class="form-control" required>
+
+                        <div class="row g-3 mt-1">
+                            <div class="col-6">
+                                <label for="DateTransport" class="form-label">Date</label>
+                                <input type="date" id="DateTransport" name="DateHarvested" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="time" class="form-label">Truck/Bakkie Departure Time(optional)</label>
+                                <input type="time" id="time" name="time" class="form-control">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success mt-3">Submit Logistics</button>
@@ -154,6 +192,10 @@
                 <div class="card-body">
                     <form action="/Summary" method="post">
                         <div class="mb-3">
+                                    <label for="endShiftCrates" class="form-label">End shift Crates <span class="small text-secondary">(required)</span></label>
+                                    <input type="number" id="endShiftCrates" name="endShiftCrates" class="form-control" min="0">
+                                </div>
+                        <div class="mb-3">
                             <label for="delaysInfo" class="form-label">Delays</label>
                             <input type="text" id="delaysInfo" name="delaysInfo" class="form-control">
                         </div>
@@ -161,11 +203,55 @@
                             <label for="remarksInfo" class="form-label">Additional Remarks</label>
                             <input type="text" id="remarksInfo" name="remarksInfo" class="form-control">
                         </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-6">
+                                <label for="DateNotes" class="form-label">Date</label>
+                                <input type="date" id="DateNotes" name="DateHarvested" class="form-control">
+                            </div>
+                            <div class="col-6">
+                                <label for="TimeNotes" class="form-label">Time</label>
+                                <input type="time" id="TimeNotes" name="TimeHarvested" class="form-control">
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-success">Submit Notes</button>
                     </form>
                 </div>
             </article>
         </section>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+    <script>
+        
+        const today = new Date();
+        const todayString = [
+            today.getFullYear(),
+            String(today.getMonth() + 1).padStart(2, "0"),
+            String(today.getDate()).padStart(2, "0")
+        ].join("-");
+        const currentTime = [
+            String(today.getHours()).padStart(2, "0"),
+            String(today.getMinutes()).padStart(2, "0")
+        ].join(":");
+
+        document.querySelectorAll('input[type="time"]').forEach((input) => {
+            input.value = currentTime;
+        });
+
+         const datetransport = document.getElementById("DateTransport");
+        datetransport.value = todayString;
+
+        const dateHarvested = document.getElementById("DateHarvested");
+        dateHarvested.value = todayString;
+
+         const dateTeam = document.getElementById("DateTeam");
+        dateTeam.value = todayString;
+        
+
+         const dateNotes = document.getElementById("DateNotes");
+        dateNotes.value = todayString;
+        
+    </script>
 </body>
 </html>
+
