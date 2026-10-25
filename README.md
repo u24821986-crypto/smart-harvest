@@ -102,3 +102,4 @@ All Python models have been tested and validated using `pytest`.
 *   Python
 *   Pytest
 *   Git & GitHub
+*   GitHub Copilot
