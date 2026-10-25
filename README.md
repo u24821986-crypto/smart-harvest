@@ -16,41 +16,89 @@ SmartHarvest is a web-based supply chain management solution designed for Remban
 
 ## Installation & Setup Instructions
 
-This submission focuses on the frontend prototype (HTML/CSS/JS) and Python logic models. No external server or database installation is required to view the UI.
+### Prerequisites
+Before running the project, ensure the following software is installed:
+*   Python 3.10 or later
+*   Git
+*   Visual Studio Code (recommended)
 
-**To view the web application:**
-1. Download or clone this repository to your local machine.
-2. Open the `templates` folder.
-3. Double-click on `index.html` to open the Home page in any web browser (Chrome, Edge, Firefox, etc.).
-4. Use the navigation buttons on the screen to move between the Login, Dashboard, and Operations pages.
+### 1. Clone the Repository
+git clone https://github.com/u24821986-crypto/smart-harvest.git
+cd smart-harvest
 
-**To view the Python logic models and tests:**
-1. Open the `models` folder to view the calculation logic (e.g., `harvest_model.py`, `transport_model.py`).
-2. Open the `tests` folder to view the Python unit tests written to validate the models.
+### 2. Create and Activate a Virtual Environment
+**Windows (PowerShell):**
+python -m venv .venv
+.venv\Scripts\activate
+
+**macOS / Linux:**
+python3 -m venv .venv
+source .venv/bin/activate
+
+### 3. Install Dependencies
+pip install pytest
+
+### 4. Run the Unit Test Suite
+Execute the automated test suite:
+python -m pytest
+
+**Expected Result:**
+20 passed
+
+The test suite verifies the following modules:
+*   harvest_model.py
+*   transport_model.py
+*   optimisation_model.py
+*   bottleneck_model.py
+
+### 5. Run the Frontend Prototype
+The frontend is a static web prototype built with HTML, CSS, and JavaScript. It does not require the virtual environment or a server to view.
+
+1. Open the `templates/` folder in the project directory.
+2. Double-click on `index.html` to open the Home page in your web browser.
+3. Use the navigation links/buttons within the UI to explore the Login, Dashboard, and Operations pages.
 
 ---
 
 ## Folder Structure
-```text
 smart-harvest/
-│
 ├── README.md                  # This file
 ├── .gitignore                 # Git ignore file
-│
 ├── models/                    # Python logic files
 │   ├── bottleneck_model.py
 │   ├── harvest_model.py
 │   ├── optimisation_model.py
 │   └── transport_model.py
-│
 ├── tests/                     # Unit tests for models
 │   ├── test_bottleneck_model.py
 │   ├── test_harvest_model.py
 │   ├── test_optimisation_model.py
 │   └── test_transport_model.py
-│
 └── templates/                 # HTML files (Frontend prototype)
     ├── index.html
     ├── login.html
     ├── dashboard.html
     └── operations.html
+
+---
+
+## Project Status
+The current implementation includes:
+*   Harvest Management Model
+*   Transport Management Model
+*   Bottleneck Detection Model
+*   Optimisation Model
+*   Frontend Web Prototype
+*   Unit Testing Suite
+
+All Python models have been tested and validated using `pytest`.
+
+## Technologies Used
+*   HTML5
+*   CSS3
+*   Bootstrap 5
+*   JavaScript
+*   Chart.js
+*   Python
+*   Pytest
+*   Git & GitHub
