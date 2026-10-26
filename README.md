@@ -61,19 +61,24 @@ The frontend is a static web prototype built with HTML, CSS, and JavaScript. It 
 ---
 
 ## Folder Structure
-smart-harvest/
+```text
+BFB321_Project/
+│
 ├── README.md                  # This file
 ├── .gitignore                 # Git ignore file
+│
 ├── models/                    # Python logic files
 │   ├── bottleneck_model.py
 │   ├── harvest_model.py
 │   ├── optimisation_model.py
 │   └── transport_model.py
+│
 ├── tests/                     # Unit tests for models
 │   ├── test_bottleneck_model.py
 │   ├── test_harvest_model.py
 │   ├── test_optimisation_model.py
 │   └── test_transport_model.py
+│
 └── templates/                 # HTML files (Frontend prototype)
     ├── index.html
     ├── login.html
